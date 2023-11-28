@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_magic/config/constants.dart';
 import 'package:sleep_magic/screens/home/home_screen.dart';
+import 'package:sleep_magic/screens/main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -109,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Colors.white,
                 ),
                 backgroundColor: MaterialStatePropertyAll<Color>(
-                  Color(0xff5099b4),
+                  Color(tealPrimaryColor),
                 ),
                 alignment: Alignment.center,
               ),
@@ -155,7 +157,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // ignore: use_build_context_synchronously
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => const HomeScreen(title: "Sleep Magic"),
+        builder: (context) => const MainPage(),
       ),
     );
   }
