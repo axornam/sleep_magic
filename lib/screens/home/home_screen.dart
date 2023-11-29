@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:sleep_magic/screens/moods/mood_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
   final String title;
@@ -210,7 +212,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const MoodScreen(
+                moodId: "Camping Relax",
+                playTime: "20000",
+                noOfSongs: 20,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
