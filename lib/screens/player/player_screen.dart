@@ -9,6 +9,8 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
+  bool _isButtomSheetOpened = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,26 @@ class _PlayerScreenState extends State<PlayerScreen> {
           )
         ],
       ),
+
+      //bottomSheet: _isButtomSheetOpened != true
+      //? _showMusicalLyricsDialog(context) : null,
+
+      bottomSheet: DraggableScrollableSheet(
+        initialChildSize: 0.125,
+        minChildSize: 0.125,
+        maxChildSize: 0.7,
+        builder: (ctx, controller) => _musicalLyricsDialog(controller),
+        expand: false,
+      ),
+
+      //bottomSheet: BottomSheet(
+      //showDragHandle: true,
+      //onClosing: () {},
+      ////builder: (_) => _showMusicalLyricsDialog(context),
+      //builder: (_) => _musicalLyricsDialog(ScrollController()),
+      //enableDrag: true,
+      //),
+
       body: Stack(
         children: [
           Column(
@@ -55,7 +77,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
               const SizedBox(height: 15),
               _musicalMedialControls(),
               const SizedBox(height: 50),
-              _musicalLyricsDialog(),
+              //_musicalLyricsDialog(),
             ],
           )
         ],
@@ -65,15 +87,28 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   void _onLike() {}
 
-  Widget _musicalLyricsDialog() {
+  Widget _showMusicalLyricsDialog(BuildContext? context) {
     return InkWell(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(40),
         topRight: Radius.circular(40),
       ),
-      onTap: () {},
-      onTapUp: (details) {},
-      onTapDown: (details) {},
+      onTap: () {
+        showModalBottomSheet(
+          context: context!,
+          builder: (_) => _musicalLyricsDialog(null),
+          isDismissible: true,
+          barrierLabel: "Hello",
+          elevation: 2.0,
+          showDragHandle: true,
+          enableDrag: true,
+        );
+        setState(() {
+          _isButtomSheetOpened = true;
+        });
+      },
+      //onTapUp: (details) {},
+      //onTapDown: (details) {},
       child: Container(
         height: 100,
         decoration: const BoxDecoration(
@@ -89,7 +124,20 @@ class _PlayerScreenState extends State<PlayerScreen> {
           child: Column(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context!,
+                    builder: (_) => _musicalLyricsDialog(null),
+                    isDismissible: true,
+                    barrierLabel: "Hello",
+                    elevation: 2.0,
+                    showDragHandle: true,
+                    enableDrag: true,
+                  );
+                  setState(() {
+                    _isButtomSheetOpened = true;
+                  });
+                },
                 icon: const Icon(Icons.arrow_upward),
               ),
               const Text(
@@ -97,6 +145,49 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _musicalLyricsDialog(ScrollController? ctrl) {
+    return InkWell(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
+      ),
+      onTap: () {},
+      onTapUp: (details) {},
+      onTapDown: (details) {},
+      child: SingleChildScrollView(
+        physics: null,
+        controller: ctrl,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_upward),
+              ),
+              const Text(
+                "LYRICS",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 18),
+              const SingleChildScrollView(
+                child: Text(
+                  NOT_AFRAID_LYRICS,
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
                 ),
               ),
             ],
