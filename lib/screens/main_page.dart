@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_magic/screens/home/home_screen.dart';
+import 'package:sleep_magic/screens/player/player_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -64,7 +65,14 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.only(left: 25),
               child: InkWell(
                 borderRadius: BorderRadius.circular(50),
-                onTap: () => debugPrint("Music"),
+                onTap: () {
+                  debugPrint("Music");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const PlayerScreen(),
+                    ),
+                  );
+                },
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
