@@ -34,6 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   "&",
                   style: TextStyle(
                     fontSize: 110,
+                    decoration: TextDecoration.none,
                     color: Colors.white,
                     shadows: <Shadow>[
                       Shadow(
@@ -53,6 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       "Sleep Better",
                       style: TextStyle(
                         fontSize: 45,
+                        decoration: TextDecoration.none,
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
@@ -62,6 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       style: TextStyle(
                         fontSize: 45,
                         color: Colors.black,
+                        decoration: TextDecoration.none,
                         fontWeight: FontWeight.w600,
                         shadows: <Shadow>[
                           Shadow(
@@ -83,6 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 "Have a relaxed and focused day",
                 style: TextStyle(
                   fontSize: 18,
+                  decoration: TextDecoration.none,
                   height: 1,
                   color: Colors.black45,
                   fontWeight: FontWeight.normal,
