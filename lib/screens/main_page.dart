@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_magic/screens/home/home_screen.dart';
 import 'package:sleep_magic/screens/player/player_screen.dart';
+import 'package:sleep_magic/screens/profile/profile_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -87,7 +88,14 @@ class _MainPageState extends State<MainPage> {
             Padding(
               padding: const EdgeInsets.only(right: 5),
               child: InkWell(
-                onTap: () => debugPrint("Profile"),
+                onTap: () {
+                  debugPrint("Profile");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ),
+                  );
+                },
                 borderRadius: BorderRadius.circular(50),
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,

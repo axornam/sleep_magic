@@ -1,5 +1,6 @@
 // colors
 const int tealPrimaryColor = 0xff5099b4;
+const int pinkPrimaryColor = 0xfffcd4d4;
 
 // text
 const String NOT_AFRAID_LYRICS = """
