@@ -18,7 +18,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
         actions: [
           IconButton(
             onPressed: () => _onLike,
-            icon: const Icon(Icons.heart_broken),
+            icon: const Icon(Icons.favorite_outline),
           )
         ],
       ),

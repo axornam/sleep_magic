@@ -20,7 +20,9 @@ class MoodItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 15),
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      height: 200,
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(25)),
         child: Container(

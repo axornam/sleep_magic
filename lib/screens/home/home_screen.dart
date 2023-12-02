@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:sleep_magic/screens/categories/explore_categories.dart';
+import 'package:sleep_magic/screens/moods/explore_moods.dart';
 import 'package:sleep_magic/widgets/category_item.dart';
 import 'package:sleep_magic/widgets/divider_item.dart';
 import 'package:sleep_magic/widgets/mood_item.dart';
@@ -38,13 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             SearchBox(controller: _searchInputController),
             const SizedBox(height: 20),
-            DividerItem(text: 'Select Category', onPressed: () {}),
+            DividerItem(
+              text: 'Select Category',
+              onPressed: () => _goToScreen(const ExploreCategoriesScreen()),
+            ),
             _categoryWidgeItemsBuilder(context),
             const SizedBox(height: 30),
-            DividerItem(text: "Explore Moods", onPressed: () {}),
+            DividerItem(
+              text: "Explore Moods",
+              onPressed: () => _goToScreen(const ExploreMoodScreen()),
+            ),
             _moodWidgetItemsBuilder(context),
           ],
         ),
+      ),
+    );
+  }
+
+  void _goToScreen(Widget m) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => m,
       ),
     );
   }
@@ -54,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
       height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(left: 10),
         itemBuilder: (context, index) => CategoryItem(
           index: index,
           text: "Sleep",
@@ -69,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       height: 200,
       child: ListView.builder(
+        padding: const EdgeInsets.only(left: 10),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => MoodItem(
           title: "Camping Relax",
