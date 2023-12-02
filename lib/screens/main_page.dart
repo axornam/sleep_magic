@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         onPressed: () {},
-        elevation: 5,
+        elevation: 2.0,
         foregroundColor: Colors.white,
         child: const Icon(
           Icons.add,
@@ -25,7 +25,9 @@ class _MainPageState extends State<MainPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        height: 70.0,
         notchMargin: 5.0,
+        elevation: 3.0,
         shape: const CircularNotchedRectangle(),
         //onPressed: (value) => debugPrint(value.toString()),
         //indicatorColor: const Color(tealPrimaryColor),
@@ -48,7 +50,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 25),
+              padding: const EdgeInsets.only(right: 30),
               child: InkWell(
                 onTap: () => debugPrint("Sleep"),
                 borderRadius: BorderRadius.circular(50),
@@ -62,7 +64,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25),
+              padding: const EdgeInsets.only(left: 30),
               child: InkWell(
                 borderRadius: BorderRadius.circular(50),
                 onTap: () {
