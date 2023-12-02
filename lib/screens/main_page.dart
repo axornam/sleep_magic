@@ -1,7 +1,10 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sleep_magic/screens/home/home_screen.dart';
 import 'package:sleep_magic/screens/player/player_screen.dart';
 import 'package:sleep_magic/screens/profile/profile_screen.dart';
+import 'package:sleep_magic/screens/sleep/sleep_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -11,6 +14,18 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  String _screenId = "home";
+  final Map<String, Map> _screens = {
+    "home": {
+      "screen_id": "home",
+      "component": const HomeScreen(title: "Sleep Magic"),
+    },
+    "sleep": {
+      "screen_id": "sleep",
+      "component": const SleepScreen(),
+    }
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,12 +54,15 @@ class _MainPageState extends State<MainPage> {
             Padding(
               padding: const EdgeInsets.only(left: 5),
               child: InkWell(
-                onTap: () => debugPrint("Home"),
+                onTap: () {
+                  debugPrint("Home");
+                  _changeScreen("home");
+                },
                 borderRadius: BorderRadius.circular(50),
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.home),
+                    Icon(FluentIcons.home_12_regular),
                     Text("Home"),
                   ],
                 ),
@@ -53,12 +71,15 @@ class _MainPageState extends State<MainPage> {
             Padding(
               padding: const EdgeInsets.only(right: 30),
               child: InkWell(
-                onTap: () => debugPrint("Sleep"),
+                onTap: () {
+                  debugPrint("Sleep");
+                  _changeScreen("sleep");
+                },
                 borderRadius: BorderRadius.circular(50),
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.star_half_rounded),
+                    Icon(CupertinoIcons.moon),
                     Text("Sleep"),
                   ],
                 ),
@@ -79,7 +100,7 @@ class _MainPageState extends State<MainPage> {
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.play_circle),
+                    Icon(CupertinoIcons.play_circle),
                     Text("Music"),
                   ],
                 ),
@@ -100,7 +121,7 @@ class _MainPageState extends State<MainPage> {
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.person_sharp),
+                    Icon(CupertinoIcons.person),
                     Text("Profile"),
                   ],
                 ),
@@ -109,7 +130,15 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      body: const HomeScreen(title: "Sleep Magic"),
+      body: _screens[_screenId]!["component"],
     );
+  }
+
+  _changeScreen(String screenId) async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    // change screens logic
+    setState(() {
+      _screenId = screenId;
+    });
   }
 }
