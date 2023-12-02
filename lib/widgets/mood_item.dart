@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_magic/screens/moods/mood_screen.dart';
+import 'package:sleep_magic/widgets/play_item.dart';
 
 class MoodItem extends StatelessWidget {
   const MoodItem({
@@ -46,34 +47,7 @@ class MoodItem extends StatelessWidget {
                   color: color.withAlpha(255),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  width: 110,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 5,
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        playTime.toString(),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      const Icon(Icons.play_circle, size: 18)
-                    ],
-                  ),
-                ),
-              ),
+              PlayItem(text: playTime.toString()),
             ],
           ),
         ),
