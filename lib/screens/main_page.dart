@@ -51,41 +51,61 @@ class _MainPageState extends State<MainPage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Padding(
+            Container(
               padding: const EdgeInsets.only(left: 5),
+              decoration:
+                  _screenId == 'home' ? _buildTabIndicator('home') : null,
               child: InkWell(
                 onTap: () {
                   debugPrint("Home");
                   _changeScreen("home");
                 },
                 borderRadius: BorderRadius.circular(50),
-                child: const Column(
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(FluentIcons.home_12_regular),
-                    Text("Home"),
+                    Icon(
+                      FluentIcons.home_12_regular,
+                      color: _screenId == "home" ? Colors.blue : null,
+                    ),
+                    Text(
+                      "Home",
+                      style: TextStyle(
+                        color: _screenId == "home" ? Colors.blue : null,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            Padding(
+            Container(
               padding: const EdgeInsets.only(right: 30),
+              decoration:
+                  _screenId == 'sleep' ? _buildTabIndicator('sleep') : null,
               child: InkWell(
                 onTap: () {
                   debugPrint("Sleep");
                   _changeScreen("sleep");
                 },
                 borderRadius: BorderRadius.circular(50),
-                child: const Column(
+                child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(CupertinoIcons.moon),
-                    Text("Sleep"),
+                    Icon(
+                      CupertinoIcons.moon,
+                      color: _screenId == "sleep" ? Colors.blue : null,
+                    ),
+                    Text(
+                      "Sleep",
+                      style: TextStyle(
+                        color: _screenId == "sleep" ? Colors.blue : null,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            Padding(
+            Container(
               padding: const EdgeInsets.only(left: 30),
               child: InkWell(
                 borderRadius: BorderRadius.circular(50),
@@ -106,7 +126,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
             ),
-            Padding(
+            Container(
               padding: const EdgeInsets.only(right: 5),
               child: InkWell(
                 onTap: () {
@@ -131,6 +151,17 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
       body: _screens[_screenId]!["component"],
+    );
+  }
+
+  _buildTabIndicator(String id) {
+    final EdgeInsets insets = id == 'sleep'
+        ? const EdgeInsets.only(bottom: 52.5, left: 0, right: 30)
+        : const EdgeInsets.only(bottom: 52.5, left: 5);
+
+    return UnderlineTabIndicator(
+      borderSide: const BorderSide(color: Colors.blue, width: 3),
+      insets: insets,
     );
   }
 
