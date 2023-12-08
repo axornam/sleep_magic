@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:sleep_magic/screens/categories/explore_categories.dart';
 import 'package:sleep_magic/screens/moods/explore_moods.dart';
+import 'package:sleep_magic/screens/recent/recent_searches.dart';
 import 'package:sleep_magic/widgets/category_item.dart';
 import 'package:sleep_magic/widgets/divider_item.dart';
 import 'package:sleep_magic/widgets/mood_item.dart';
@@ -38,7 +39,16 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SearchBox(controller: _searchInputController),
+            SearchBox(
+              controller: _searchInputController,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const RecentSearchesScreen(),
+                  ),
+                );
+              },
+            ),
             const SizedBox(height: 20),
             DividerItem(
               text: 'Select Category',
